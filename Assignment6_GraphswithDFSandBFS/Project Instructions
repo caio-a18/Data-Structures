@@ -1,0 +1,78 @@
+Programming Assignment 6:
+Grading criteria, submission instructions, and general guidelines are described in the documents included with the
+assignment on canvas. These are the same as they were for previous programming assignments. See the P6 canvas page for
+the grading rubric.
+In this assignment you will implement basic graph search algorithms. The specifications below are fairly detailed, but they
+do not attempt to describe every situation or consideration exhaustively. It is part of the programming exercises to decide
+how to handle these types of cases and do something reasonable.
+Constructing undirected, unweighted graphs
+Create a class Graph<K,V> with the methods listed below. Nodes are referenced by their node names, which are type K.
+The nodes may contain additional information of type V. The methods with boolean return types should return true if
+successful and false otherwise. The graph should be implemented using
+adjacency lists. That means that there is a list for
+each vertex which contains all the edges incident to that vertex. Your implementation should be efficient in the space
+required.
+• boolean addNode(K name, V data ) - adds a node to the graph and checks for duplicates.
+• boolean addNodes(K[] names, V[] data) - adds a list of nodes to the graph and checks for duplicates.
+You may throw an exception if the length of the names and data arrays are different.
+• boolean addEdge(K from, K to) - adds an undirected edge from node from to node to.
+• boolean addEdges(K from, K... toList) - adds an undirected edge from node from to each node in toList.
+• boolean removeNode(K name) - removes a node from the graph along with all connected edges.
+• boolean removeNodes(K... nodelist) - removes each node in nodelist and their edges from the graph.
+• void printGraph() - prints the graph in the same adjacency list format in the read method described below. The
+nodes and their neighbors and their neighbors should be listed in alphabetical order.
+Reading graphs from a file
+It is also useful to be able to specify more complex graphs with a simple specification from a text file. Implement the
+following method
+• static <V> Graph<String,V> read(filename) - constructs a graph from a text file using the following format:
+<nodename1> <neighbor1> <neighbor2> ...
+<nodename2> <neighbor1> <neighbor2> ...
+...
+This is a simple adjacency list of node names and list of neighbors. Names can be any alpha-numneric strings using white
+space as separators. The neighbors do not need to be in any particular order. If a neighbor node has not yet been specified
+(as the first node in a line), it should be created. If a line contains only a node and no neighbors, it represents a
+disconnected node. If some specifications are redundant (e.g. the same edge twice), they should be ignored. The data
+stored in each node should be initialized to null. 
+
+Finding paths
+Next you will implement methods to find paths between two nodes using depth-first and breadth-first search. You
+will see DFS and BFS in Wednesday’s lecture, but you are encouraged to look up implementations in your textbook.
+• K[] DFS(K from, K to) - returns the result, i.e. the path or a list of node names, of depth-first search between
+nodes from and to. It should return an empty array if no path exists. The first entry of the returned array
+should be from and the last value of the array should be to. Each consecutive value should be the name of a
+node that can be reached by a single edge from the previous value in the array.
+• K[] BFS(K from, K to) - as in DFS, but using the breadth-first search algorithm. If there are multiple paths of
+equivalent length, you only need to return one of them. The format of the path should be the same as that
+returned by the DFS routine.
+Your demonstration should use multiple examples to illustrate all the functionality.
+A Fun Application of Graphs and DFS/BFS
+Create a program called WordLadders. The main method should take a filename as input where the file is a “word
+graph” representation (described below). The program will create a graph from this file. Then the program will
+query the user for a start and end vertex (represented by a word) and whether to do a DFS or BFS. The program
+will then print the path found between the start and the end, and query the user for another pair of words. The
+program ends when the user stops entering words.
+To read in a “word graph”, the program should have the following method:
+● static Graph<Integer, String> readWordGraph(filename) constructs a graph from a text file using the
+following format:
+<nodename1> <nodedata1> <neighbor1> <neighbor2> <neighbor3>
+<nodenade2> <nodedata2> <neighbor2> <neighbor2> <neighbor3>
+Here each node name is type Integer and each node data is type String.
+Your program should then have a method that takes the graph, gets the list of nodes and places them into a
+hashtable where the node data is the key for the hashtable and the node name is the data associated with that key.
+This will let you lookup nodes by their data.
+Now, create a routine that queries two words from the user. The program should:
+1. Hash the words given and use the hash table to get the names of the nodes that contain each of those
+words.
+2. Use either the BFS or DFS routine to get the path from the node of the first word to the node of the second
+word.
+3. The BFS/DFS routines will return an array of node names that represent the path. Your program should
+print the associated node values. Since here the node names are integers and the node values are strings,
+this will print a list of strings.
+There are two word graph files provided for you. These have “words” for each node in the graph and two nodes are
+connected by an edge if the words differ by a single letter.
+● Length3WordGraph is a graph built from all 3-letter English words that may be used in a game of Scrabble.
+● LargeWordGraph is a graph built from all English words that may be used in a game of Scrabble.
+You should get your program so that it can run on either of these files. Warning: you probably should not use DFS
+to find the “word ladder” on the large word graph. The paths it finds will be really long and might cause memory
+errors. Use the length 3 word graph to test DFS and BFS, and then only BFS for the large word graph.
+The result will be a word ladder!!!
