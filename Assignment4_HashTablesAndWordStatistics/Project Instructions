@@ -1,0 +1,120 @@
+Tokenizer
+Write a class ‘Tokenizer’ that provides the functionality to read text (either from a file directory
+or an array) and store normalized words using an ArrayList composed of String elements. You
+should use Java’s BufferedReader and FileReader classes to read & parse text files. When
+parsing your text, you should store each normalized word as a separate entry in your ArrayList,
+such that they are in the same order in which they appeared in the input text. Note that a ‘word’
+is defined as any sequence of adjacent characters that does not contain any of the characters {‘ ‘,
+‘\n’, ‘\t’, ‘\r’}, and that is also bounded on both the left and right by any of the aforementioned
+characters or no character. A normalized word is a word such that it has all non-alphabetic and
+non-numeric characters removed from it and all its alphabetic characters converted to lowercase.
+For example, the text “I’m going to eat twenty-five pancakes.” would contain the words [“I’m”,
+“going”, “to”, “eat”, “twenty-five”, “pancakes.”], and it would contain the normalized words
+[“im”, “going”, “to”, “eat”, “twentyfive”, “pancakes”].
+● Tokenizer(String file): a constructor that reads a ‘.txt’ file from the specified file
+directory and parses all normalized words from the file as described in the class
+description.
+○ Required runtime: O(H), where H is the number of characters in the input file
+● Tokenizer(String[] text): a constructor that reads an input sequence of Strings and parses
+all normalized words from the sequence as described in the class description, still
+maintaining the same order (where all words in one element of the specified array are
+said to precede all words in elements of the specified array that have a greater index).
+○ Required runtime: O(H), where H is the total number of characters in the
+specified array
+● ArrayList<String> wordList(): returns an ArrayList containing all of the normalized
+words parsed when creating this Tokenizer object. If any normalized word would be
+made into an empty String (such as the word “:)”), it should be excluded from the
+returned list.
+○ Required runtime: O(1)
+
+HashTable<T>
+Write a semi-generic class ‘HashTable’ that stores String keys paired with generic type T values.
+You should use Java’s built-in hashCode method for the String class to compute hash codes for
+Strings, but you should not use Java’s built-in HashTable class to implement this class. The
+hashCode function can return negative numbers, so you can also take the absolute value before
+modding it by the table size. You may wish to consider using a nested class for entries to your
+hash table. If it makes your implementation easier, you may declare this class as public and
+implement the Comparable interface for it.
+● HashTable(): a constructor that initializes the table with a reasonably small default
+capacity. Note that capacity is defined as the number of buckets in the hash table if
+separate chaining is used, or the array size if probing is used.
+○ Required runtime: O(1)
+● HashTable(int capacity): a constructor that initializes the table to the specified capacity.
+Note that capacity is defined as the number of buckets in the hash table if separate
+chaining is used, or the array size if probing is used. You should throw an
+IllegalArgumentException if the specified capacity is negative.
+○ Required runtime: O(1)
+● T get(String key): returns the value associated with the specified key. If the key does not
+exist, you should throw a NoSuchElementException.
+○ Required runtime: O(1) average case, O(N) worst case, where N is the size of the
+hash table
+● void put(String key, T value): stores the specified key-value pair in the hash table. If the
+specified key already exists in the hash table and the specified value is an instance of the
+Integer class (consider using the ‘instanceof’ keyword), you may increase its value by the
+specified value instead of adding the new pair if this simplifies your code. Otherwise
+change it to the specified value. If you handle collisions using separate chaining, you
+should rehash the table when the load factor reaches 1. If you handle collisions using a
+probing strategy, you should rehash the table when the load factor reaches 0.5.
+○ Required runtime: O(1) average case, O(N) worst case, where N is the size of the
+hash table
+● T remove(String key): removes a key-value pair associated with the specified key and
+returns the associated value. If the key does not exist, you should throw a
+NoSuchElementException.
+○ Required runtime: O(1) average case, O(N) worst case, where N is the size of the
+hash table
+● int size(): returns the number of elements in the hash table.
+○ Required runtime: O(1)
+
+WordStat
+Write a class ‘WordStat’ class that will be used to compute various statistics about words present
+in certain texts. Each instance of this class will correspond to one text. When implementing this
+class, you should use your Tokenizer and HashTable classes to achieve the best efficiency in
+your calculations. You should design the class and use your classes above such that the bulk of
+the statistics are computed upon construction for a given source, rather than for each query. You
+can assume that all String inputs and that all String entries for the String array inputs are
+normalized for the following methods other than the constructors. You should never return a null
+value in any of the following methods.
+● WordStat(String file): a constructor that prepares this instance of WordStat to efficiently
+calculate the statistics in the methods required below based on the normalized versions of
+words in the specified text file directory. If you need to sort an imported ArrayList or
+LinkedList, consider using ‘Collections.sort’ which will sort your list in O(n log n)
+average time if n is the number of elements in your list.
+○ Required runtime: O(H + W log W) average case, where H is the number of
+characters in the specified file and W is the number of words in the specified file
+● WordStat(String[] text): a constructor that prepares this instance of WordStat to
+efficiently calculate the statistics in the methods required below based on the normalized
+versions of words in the specified text. If you need to sort an imported ArrayList or
+LinkedList, consider using ‘Collections.sort’ which will sort your list in
+O(n log n) average time, where n is the number of elements in your list.
+○ Required runtime: O(H + W log W) average case, where H is the number of
+characters in the specified text and W is the number of words in the specified text
+● int wordCount(String word): returns the number of times the specified word appears in
+the normalized text.
+○ Required runtime: O(1) average case, O(W) worst case, where W is the number of
+words in the normalized text
+● int wordRank(String word): returns the rank of the specified word in respect to how
+often it occurs relative to the other words in the normalized text, where rank 1 is the most
+common word. Keep in mind that words with the same frequency should return the same
+rank and that the rank should account for duplicate ranks. For example, if there are only 3
+words, w1, w2, & w3 with frequencies 20, 20, & 10, respectively, their ranks would be 1,
+1, & 3. If the specified word does not appear in the normalized text, you should return 0.
+○ Required runtime: O(1) average case, O(W) worst case, where W is the number of
+words in the normalized text
+● String[] mostCommonWords(int k): returns a String array of the k most common words
+in the normalized text, in decreasing order of their frequency. You may break ties in
+rarity however you find most convenient. If k is negative, you should throw an
+IllegalArgumentException.
+○ Required runtime: O(k)
+● String[] leastCommonWords(int k): returns a String array of the k least common words
+in the normalized text, in increasing order of their frequency. You may break ties in rarity
+however you find most convenient. If k is negative, you should throw an
+IllegalArgumentException.
+○ Required runtime: O(k)
+● String[] mostCommonCollocations(int k, String baseWord, boolean precede): returns
+the k most common words (collocations) that precede the first instance of baseWord in
+the normalized text if precede is true, or the k most that follow the first instance of
+baseWord if precede is false. You may break ties in rarity however you find most
+convenient, and the ordering of your returned array does not matter. If k is negative or
+baseWord does not exist in the normalized text, you should throw an
+IllegalArgumentException.
+○ Required runtime: O(W2), where W is the number of words in the normalized text
