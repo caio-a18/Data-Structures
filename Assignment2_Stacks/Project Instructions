@@ -1,0 +1,75 @@
+Programming Assignment
+Your code must be able to compile for Java 8. Because the assign-
+ment is graded with TAs’ unit test suite, any code that cannot be compiled
+with Java8 will receive a grade of 0 for correctness part.
+You must include a testing class in which you use JUnit tests to test each
+of your methods. Your tests must cover all lines of code in your methods, and
+they should account for edge cases in situations involving loops or recursion.
+Please refer to this tutorial if you are unsure how to set up or write JUnit
+tests: https://www.tutorialspoint.com/junit/junit quick guide.htm.
+You must include comments alongside your code. You should include a
+comment before each flow statement (if, for, while, etc.) and wherever you
+have complex blocks of code which have a purpose that is not immediately
+5
+discernible. Be sure to also use appropriate and meaningful variable names
+throughout your code.
+You may not import any libraries from the Java API in your implemen-
+tation, though you may use them in your testing class. You may use Java
+classes that do not require importation such as String or Math. Be sure to fol-
+low good encapsulation practices (no public classes, methods, or fields other
+than the ones listed below), and refer to the rubric for grading procedures.
+For the first part of the programming assignment, you will be implement-
+ing a Stack class. The Stack should not have any limit in capacity, so you
+should determine when it should resize to have more elements inside. The
+Stack should have the following fundamental functions:
+public class Stack<T extends Comparable<? super T>>
+• boolean push(T value) - given a value as input, pushes it into
+the stack. The function returns true if it succeed in inserting, otherwise,
+false.
+• T pop() - tries to delete the element at the front of the stack. The
+function returns the value of the front element if it succeeds, otherwise,
+returns null.
+• T peek() - returns but not deletes the value of the front element in
+the stack if there is any; otherwise, it should return null.
+For the second part of the programming assignment, you will be imple-
+menting a StringManipulation class that can perform the followings
+operations:
+public class StringManipulation
+• static String toPostfix(String infix) - takes in a string
+of infix expression and returns the postfix expression for that string.
+The input string will be a legal infix expression and has the follow-
+ings characters: numbers, operations (+,-,*,/), left parenthesis ”(”,
+and right parenthesis ”)”.
+• static int result(String postfix) - takes in a string of post-
+fix expression and returns the final value of that expression. The input
+6
+string will be a legal postfix expression and has the followings char-
+acters: spaces, numbers, and operations (+,-,*,/). There will be one
+space between each pair of numbers, or pair of a number and an opera-
+tion. Please note that operation ”/” is an integer division, i.e. cutting
+of anything to the right of the decimal points. The numbers in the
+postfix expression can have multiple digits but will be in the range of
+int primitive type.
+For example: a valid postfix expression is ”3 20 + 6 -”.
+• static String smallestNumber(String number, int n) -
+takes in a string containing only digits from 0 to 9 representing a num-
+ber, and an integer n such that n is less than or equal to the length of
+the string. The functions should return the smallest number obtained
+by deleting n digits from the input string.
+The result string should not have any leading zeroes, and deleting lead-
+ing zeros should not count toward n digits. For example, number =
+”70004” and n = 1, so the result should be ”4” by deleting digit ”7”.
+• static String unbelievableString(String s)- takes in a
+string containing only lowercase and uppercase English letter, and re-
+turns the unbelievable string obtained by deleting some characters
+from the input string such that the following condition hold: The un-
+believable string is a string without any two adjacent characters
+s[i] and s[i + 1] such that:
+– 0 ≤ i ≤ s.length − 2
+– s[i] is an uppercase letter and s[i + 1] is the same letter but in
+lowercase or vice-versa.
+For example, we have a string ”abDDdddE”. Now there are ”Dd” in
+”abDDdddE” that doesn’t satisfy the condition, so we will delete these
+two characters to have the string ”abDddE”.
+Next, ”abDdde” still has ”Dd”, so we will delete these too, and have
+the final result string ””abdE” satisfying the condition.
