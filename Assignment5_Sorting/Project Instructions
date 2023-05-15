@@ -1,0 +1,48 @@
+Programming Assignment:
+For the first part of the programming assignment, you will be implement-
+ing an public Art class with the following construction:
+public Art(int height, int price, int width, String
+name, String artistName)
+The class should have appropriate getter and setter methods as well as
+optional helper methods to support subsequent classes and functionalities.
+The Cleveland Museum of Art wants an public ArtMuseum class that
+can manage the database of its artworks (Art objects) and support some
+fundamental functionalities. Since the class acts as a database for the Cleve-
+land Museum of Art, it should have infinite capacity theoretically, and the
+museum should not have any warning or error when adding new artwork to
+7
+the database. You are allowed to use anything such as LinkedList, Array,
+etc as an underlying data structure as you see fit for the database (you can
+either use Java built-in library: java.util.* or make your own version as you
+would like). Specificially, the ArtMuseum class should have the following
+constructor:
+public ArtMuseum(String museumName)
+and support the following functionalities:
+• boolean add(Art art) - given an Art object, adds it to the database
+of the current ArtMuseum. The function returns true if it succeed in
+adding, otherwise, false.
+• List<Art> sort(String attribute, int direction) - given
+a name of an attribute in the Art class, sort the current collection of
+arts in an ascending order if direction ≥ 0, or in descending order if
+direction < 0, based on the attribute input into the fuction. The func-
+tion should return sorted list of the arts or an empty list if there is no
+art in the database. It is guaranteed that the String attribute is
+from this list {height, price, width, names, artistName}.
+• List<Art> findArts(String artistName) - given a name of
+an artist, find and return all arts whose artistName is the same as input
+name. The function should return a list of all matched Art objects
+with artistName the same as input name, or an empty list if there is
+no matched Art object.
+• List<Art> randomizeArts(int n) - randomly generates and
+returns a list of n Art objects. The function should return an empty
+list if n ≤ 0.
+• List<Art> randomSort(List<Art> arts) - given a list of Art
+objects, sort and return the list such that the first 1
+5 of arts are sorted
+based on height, the second 1
+5 of arts are sorted based on price, the
+third 1
+5 of arts are sorted based on width, the fourth 1
+5 of arts are
+sorted based on name, and the last remaining part are sorted based
+on artistName.
