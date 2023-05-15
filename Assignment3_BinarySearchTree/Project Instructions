@@ -1,4 +1,4 @@
-Programming Problem:
+Programming Project:
 Create a class named BinarySearchTree with the following methods:
 a) void insert(int key) – inserts a node in the binary search tree
 b) void createTree(int[] values) - create a binary search tree from the passed
