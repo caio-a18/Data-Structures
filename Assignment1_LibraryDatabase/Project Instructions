@@ -1,0 +1,75 @@
+Programming Assignment: [50 points]
+- In the programming portion of this assignment, you will implement 2 classes: Book and
+LibraryDatabase. You must implement both of these classes and all of the methods
+listed below as they are described. You may implement these classes however you see fit
+as long as their methods fall within the descriptions and runtime constraints provided
+(N refers to the size of the list containing all the Books in LibraryDatabase). Your code
+must also compile for Java 8.
+- You must include a testing class in which you use JUnit tests to test each of your
+methods. Your tests must cover all lines of code in your methods, and they should
+account for edge cases in situations involving loops or recursion. Please refer to this
+tutorial if you are unsure how to set up or write JUnit tests:
+https://www.tutorialspoint.com/junit/junit_quick_guide.htm.
+- You must include comments alongside your code. You should include a comment before
+each flow statement (if, for, while, etc.) and wherever you have complex blocks of code
+which have a purpose that is not immediately discernible. Be sure to also use appropriate
+and meaningful variable names throughout your code.
+- You may not import any libraries from the Java API in your implementation, though
+you may use them in your testing class. You may use Java classes that do not require
+importation such as String or Math. Be sure to follow good encapsulation practices (no
+public classes, methods, or fields other than the ones listed below), and refer to the rubric
+for grading procedures.
+1. Book
+a. Book(String title, String isbn, String author): A constructor for the Book class
+that sets the title, ISBN (International Standard Book Number), and author to the
+respective specified values. Note that the ISBN should have exactly 13 numeric
+characters. If the ISBN falls outside of this constraint, you should throw an
+IllegalArgumentException.
+i. Required Runtime: O(1)
+b. String getTitle(): Returns the book’s title.
+i. Required Runtime: O(1)
+c. String getISBN(): Returns the book’s ISBN.
+i. Required Runtime: O(1)
+d. String getAuthor(): Returns the book’s author.
+i. Required Runtime: O(1)
+2. LibraryDatabase
+a. LibraryDatabase(int capacity): A constructor for the LibraryDatabase class that
+initializes an empty list with the specified capacity that will store Book objects. If
+the capacity is negative, throw an IllegalArgumentException.
+i. Required Runtime: O(1)
+b. void add(Book book): Adds the specified book to the database. The book should
+be inserted such that the database is sorted by ascending numeric ISBN after the
+insertion. You should resize the database if necessary, to account for the addition
+of the new book.
+i. Required Runtime: O(N)
+c. Book remove(String isbn): Removes a book with the specified ISBN from the
+database and returns it. The database should still be sorted by ascending numeric
+ISBN after the deletion. If no book with the specified ISBN exists in the database,
+return null.
+i. Required Runtime: O(N)
+d. int size(): Returns the number of books currently being stored in the database.
+i. Required Runtime: O(1)
+e. Book randomSelection(): Returns a random book from the database. Consider
+using Math.random() to determine which book to return. If no books exist in the
+database, return null.
+i. Required Runtime: O(1)
+f. Book findByTitle(String title): Returns a book with the specified title from the
+database. If no book with the specified title exists in the database, return null.
+i. Required Runtime: O(N)
+g. Book findByISBN(String isbn): Returns a book with the specified ISBN from
+the database. If no book with the specified ISBN exists in the database, return
+null.
+i. Required Runtime: O(logN)
+h. Book[] getAllByAuthor(String author): Returns an array of Books containing
+all books in the database that have been written by the specified author.
+i. Required Runtime: O(N)
+i. void removeDuplicates(): Removes all books from the database that have the
+same ISBN as another book. In the case where there are multiple books with the
+same ISBN, remove all books with that ISBN except for the one that was first
+added to the database.
+i. Required Runtime: O(N)
+j. Book[] toArray(): Returns an array containing all books in the database, arranged
+by ascending numeric ISBN. Empty spaces in the database may be included as
+null elements in the returned array, so long as they come after all non-null
+elements in it.
+i. Required Runtime: O(1)
