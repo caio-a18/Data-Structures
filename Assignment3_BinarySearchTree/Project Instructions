@@ -1,0 +1,17 @@
+Programming Problem:
+Create a class named BinarySearchTree with the following methods:
+a) void insert(int key) – inserts a node in the binary search tree
+b) void createTree(int[] values) - create a binary search tree from the passed
+in the array ( overwrites any existing tree in class)
+c) boolean search(int key) – search a node with a specific key in BST, return
+true/false if the node with the key is in the tree
+d) Node delete(int key) – deletes a node from BST, return Null if the key is not in
+the tree
+e) void inorderRec() – inorder traversal of BST (print node values)
+f) void preorderRec() – preorder traversal of BST (print node values)
+g) void postorderRec() – postorder traversal of BST (print node values)
+h) Node kthSmallest(int k) – find the kth smallest element in BST
+You need to develop this class as efficiently as possible. You are allowed to use helper classes
+(e.g. Node). The Node Helper class should hold its children and key.
+Create a main class where you give a demo of your BinarySearchTree. The Root node will be
+stored in the BinarySearchTree class.
